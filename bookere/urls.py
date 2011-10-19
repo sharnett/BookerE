@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import patterns, include, url
-from cloudmailin
+from cloudmailin.views import MailHandler
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
