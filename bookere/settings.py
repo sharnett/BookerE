@@ -122,6 +122,7 @@ INSTALLED_APPS = (
     'cloudmailin',
     'registration',
     'mailpost',
+    'django-registration',
     'books',
 )
 
