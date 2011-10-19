@@ -1,0 +1,33 @@
+{% extends "base/base.djhtml" %}
+
+{% block bottom %}
+<h1>Help On Using BookerE</h1>
+<h2>How To Add Book to Loan Repo</h2>
+<ol>
+    <li>Send an email to <a
+    href="mailto:39b5ef0e6660524333d3@cloudmailin.net">Booker E. Loanington</a> from your registered email.
+    </li>
+    <li>
+        Put the word "add" somewhere in the title
+    </li>
+    <li>
+        In the body, format the info as pairs
+        <ul>
+            <li>
+                book: <b>book title</b>
+            </li>
+            <li>
+                friend: <b>name of friend</b>
+            </li>
+        </ul>
+    </li>
+    <li>
+        Send email
+    </li>
+    <li>
+        Done!
+    </li>
+</ol>
+{% endblock bottom %}
+
+

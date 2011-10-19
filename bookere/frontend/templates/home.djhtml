@@ -1,40 +1,40 @@
-	
-			<div class="noteheader">
-			<div class="noteheaderinner">
-				<div class="centerwrap">
-				    <h1>
-                                        BookerE - Get Yer Books Back
-                                    </h1>
+{% extends "base/base.djhtml" %}
+
+{% block content %}
+
+<h1>
+    BookerE - Get Yer Books Back (<a href="{% url frontend:help %}">Read Here!</a>)
+</h1>
 
 <div class="box">
-	<div class="tail"></div>
-	<div class="free"></div>
-	<h2>
-		It works by email, so enter your email address to get started:
-	</h2>
-	<form method="post" action="{% url register:password %}"
-              class="emailform">
-            {% csrf_token %}
-		<input type="text" class="txt" name="email" value="Email address" /><input class="submit emailsubmit_n" type="submit" value="" />
-		<div class="spacer"></div>
-	</form>
-	<div class="error hide">
-		Please enter a valid email address
-	</div>
-	</div>
+    <div class="tail"></div>
+    <div class="free"></div>
+    <h2>
+	It works by email (<a href="{% url frontend:help %}">Read Here!</a>), so enter your email address to get started:
+    </h2>
+    <form method="post" action="{% url registration:registration_register %}"
+         class="emailform">
+        {% csrf_token %}
+	<input type="text" class="txt" name="email" value="Email address" />
+        <input class="submit emailsubmit_n" type="submit" value="" />
+	<div class="spacer"></div>
+    </form>
+    <div class="error hide">
+	Please enter a valid email address
+    </div>
+</div>
 
 <div class="info">
 	(We'll never spam you, and you can unsubscribe any time)
 </div>
 
-				</div>
-			</div>
-		</div>
-	
-			<div class="content">
-			<div class="centerwrap">
-				<div class="benefits">
-	<div class="howitworks"></div>
+{% endblock content %}
+
+{% block bottom %}
+<div class="content">
+    <div class="centerwrap">
+	<div class="benefits">
+	    <div class="howitworks"></div>
 	<div class="item">
 	    <div class="number"></div>
             It's your books, you should have them back!
@@ -48,9 +48,6 @@
             Request a list of the books that you've loaned out via email!
 	</div>
 	<div class="spacer"></div>
-</div>			</div>
-		</div>
-		
-			<div class="static hide">
-	<span class="id_p">113186.141891</span>
-</div>				
+    </div>
+</div>
+{% endblock bottom %}

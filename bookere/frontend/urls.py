@@ -3,5 +3,6 @@ from django.views.generic import TemplateView
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^$', TemplateView.as_view(template_name='index.djhtml'), name='home'),
+    url(r'^help$', TemplateView.as_view(template_name='help.djhtml'), name='help'),
+    url(r'^$', TemplateView.as_view(template_name='home.djhtml'), name='home'),
 )

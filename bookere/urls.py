@@ -6,19 +6,16 @@ admin.autodiscover()
 from mailpost.views import create_post
 
 urlpatterns = patterns('',
-    # Examples:
-    url(r'^', include('bookere.frontend.urls')),
-
-    # Uncomment the admin/doc line below to enable admin documentation:
-    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
-                           url(r'^admin/', include(admin.site.urls)),
-                       url(r'register/',include('register.urls',app_name='register',namespace='register'))
+                       url(r'^books/', include('books.urls',namespace='books',app_name='books')),                       
+                       url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}, name='auth_logout'),
+                       url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+                       url(r'^admin/', include(admin.site.urls)),
+                       (r'^accounts/', include('registration_backend.urls',namespace="registration",app_name="registration")),
 )
 
 urlpatterns += patterns('django.contrib.staticfiles.views',
-    url(r'^static/(?P<path>.*)$', 'serve', kwargs={"insecure": True}),
+                        url(r'^static/(?P<path>.*)$', 'serve', kwargs={"insecure": True}),
+                            url(r'^', include('bookere.frontend.urls',namespace='frontend',app_name='frontend')),
 )
 
 mail_handler = MailHandler()

@@ -1,0 +1,34 @@
+{% extends "base/base.djhtml" %}
+{% block content %}
+<div class="noteheader">
+  <div class="noteheaderinner">
+    <div class="centerwrap">
+      <div class="content">
+        <div class="centerwrap">
+          <h1>Great! Now create a password<br>so you can log in to
+            BookerE</h1>
+          <div class="box">
+            <div class="tail"></div>
+            <div class="free"></div>
+            <h2>
+              New Password (at least 6 characters please):
+            </h2>
+            <form method="post" action=""
+                  class="passform">
+              {% csrf_token %}
+              {{form}}
+              <input name="password" type="password" class="txt" value="">
+              <div class="error hide">
+                Choose a password that's 6 or more characters
+              </div>
+              <div class="submit">
+                <input type="submit" value="">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

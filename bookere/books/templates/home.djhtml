@@ -1,0 +1,5 @@
+{% extends "base/base.djhtml" %}
+{% block content %}
+{% load books %}
+{% renderBooksForUser user %}
+{% endblock content %}

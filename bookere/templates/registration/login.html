@@ -1,0 +1,24 @@
+{% extends "base/base.djhtml" %}
+{% block content %}
+<div class="noteheader">
+  <div class="noteheaderinner">
+    <div class="centerwrap">
+      <div class="content">
+        <div class="centerwrap">
+          <h1>Howdy there! Login Below</h1>
+          <div class="box">
+            <div class="tail"></div>
+            <div class="free"></div>
+            <form method="post" action=""
+                  class="passform">
+              {% csrf_token %}
+              {{form.as_p}}
+              <input type="submit" value="">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

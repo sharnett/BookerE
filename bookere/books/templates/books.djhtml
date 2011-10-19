@@ -1,0 +1,31 @@
+<h1>Loans for {{ user.username }}</h1>
+<table>
+    <thead>
+        <tr>
+            <th>
+                Friend
+            </th>
+            <th>
+                Book
+            </th>
+            <th>
+                Loan Date
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in user.book_set.all %}
+        <tr>
+            <td>
+                {{book.friend_loan }}
+            </td>
+            <td>
+                {{book.date_loan }}
+            </td>
+            <td>
+                {{book.title }}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
