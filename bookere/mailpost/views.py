@@ -55,7 +55,7 @@ def sendReport(user):
     books = user.book_set.all()
     send_mail(
         subject='Loan Report From BookerE',
-        message=booksString(books)
+        message=booksString(books),
         from_email=reply_email,
         recipient_list=[user.email],
         fail_silently=False
