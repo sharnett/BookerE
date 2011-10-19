@@ -1,11 +1,16 @@
 # Django settings for bookere project.
-
+import os
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
+
+ROOT_PATH = os.path.dirname(__file__)
+
+def absPath(rel):
+        return os.path.join(ROOT_PATH, rel)
 
 MANAGERS = ADMINS
 
@@ -106,7 +111,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    'templates/',
+    absPath('templates/'),
 )
 
 INSTALLED_APPS = (
