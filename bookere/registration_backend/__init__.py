@@ -21,7 +21,7 @@ def sendIntro(email):
     recipient_list = [email]
     fail_silently = False
     headers = {'Reply-To': from_email}
-    email = EmailMessage(subject, message, from_email, recipient_list,headers = {'Reply-To': 'another@example.com'})
+    email = EmailMessage(subject, message, from_email, recipient_list,headers = {'Reply-To': reply_email})
     email.send(fail_silently=fail_silently)
 
 
