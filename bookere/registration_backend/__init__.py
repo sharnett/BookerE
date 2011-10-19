@@ -4,7 +4,7 @@ from django.contrib.auth import login
 from django.contrib.auth.models import User
 
 from registration import signals
-from django.core.mail import send_mail
+from django.core.mail import send_mail,EmailMessage
 
 from django.contrib.auth.models import User
 from django import forms
@@ -16,13 +16,13 @@ reply_email = "39b5ef0e6660524333d3@cloudmailin.net"
 
 def sendIntro(email):
     message = 'You have successfully set up your BookerE account! Make sure to go to <a href="http://BookerE.us/help">BookerE</a> to get the instructions of how to interact with the service!'
-    send_mail(
-        subject='Welcome to BookerE!',
-        message=message,
-        from_email=reply_email,
-        recipient_list=[email],
-        fail_silently=False
-        )
+    subject='Welcome to BookerE!'
+    from_email = reply_email
+    recipient_list = [email]
+    fail_silently = False
+    headers = {'Reply-To': from_email}
+    email = EmailMessage(subject, message, from_email, recipient_list,headers = {'Reply-To': 'another@example.com'})
+    email.send(fail_silently=fail_silently)
 
 
 

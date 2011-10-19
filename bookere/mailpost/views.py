@@ -23,22 +23,27 @@ def create_post(**message):
     try:
         user = getUser(email)
         if parseSubject(subject,'add'):
-            pairs = pairBody(body)            
-            title = parsePairForKey(pairs,'book')
-            friend_loan = parsePairForKey(pairs,'friend')
-            book = Book(user=user,title=title,friend_loan=friend_loan)
-            book.save()
-            sendBook(book,user)
+            try:
+                pairs = pairBody(body)            
+                title = parsePairForKey(pairs,'book')
+                friend_loan = parsePairForKey(pairs,'friend')
+                book = Book(user=user,title=title,friend_loan=friend_loan)
+                book.save()
+                sendBook(book,user)
+            except:
+                sendError(email,'a')
         if parseSubject(subject,'report'):
-            sendReport(user)
+            try:
+                user = getUser(email)
+                sendReport(user)
+            except:
+                sendError(email,'b')
     except:
-        sendError(email)
+        sendError(email,'c')
         
-
-
-def sendError(email):
+def sendError(email,etype):
     send_mail(
-        subject='Error processing request',
+        subject='Error processing request -- %s' % etype,
         message='Could not do what you wanted me to do',
         from_email=reply_email,
         recipient_list=[email],
@@ -93,11 +98,11 @@ def getUser(email):
 
 def parsePairForKey(pairs,key):
     for k in pairs.iterkeys():
-        if key in k:
+        if key.lower() in k.lower():
             return pairs[k]
     return False
 
 def parseSubject(subject,key):
     """
     """
-    return key in subject
+    return key.lower() in subject.lower()
