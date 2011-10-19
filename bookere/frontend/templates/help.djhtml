@@ -5,7 +5,7 @@
 <h2>How To Add Book to Loan Repo</h2>
 <ol>
     <li>Send an email to <a
-    href="mailto:39b5ef0e6660524333d3@cloudmailin.net">Booker E. Loanington</a> from your registered email.
+    href="mailto:39b5ef0e6660524333d3@cloudmailin.net">39b5ef0e6660524333d3@cloudmailin.net</a> from your registered email.
     </li>
     <li>
         Put the word "add" somewhere in the title
@@ -26,6 +26,18 @@
     </li>
     <li>
         Done!
+    </li>
+</ol>
+<h2>How to Get Email Report of Loaned Books</h2>
+<ol>
+    <li>Send an email to <a
+    href="mailto:39b5ef0e6660524333d3@cloudmailin.net">Booker E. Loanington</a> from your registered email.
+    </li>
+    <li>
+        Put the word "report" somewhere in the title
+    </li>
+    <li>
+        Send email and boom!
     </li>
 </ol>
 {% endblock bottom %}

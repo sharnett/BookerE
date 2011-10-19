@@ -12,17 +12,31 @@ from django.utils.translation import ugettext_lazy as _
 from registration.backends.simple import SimpleBackend
 attrs_dict = {'class': 'required'}
 
+reply_email = "39b5ef0e6660524333d3@cloudmailin.net"
+
+def sendIntro(email):
+    message = 'You have successfully set up your BookerE account! Make sure to go to <a href="http://BookerE.us/help">BookerE</a> to get the instructions of how to interact with the service!'
+    send_mail(
+        subject='Welcome to BookerE!',
+        message=message
+        from_email=reply_email,
+        recipient_list=[email],
+        fail_silently=False
+        )
+
+
+
 class BookerEBackend(SimpleBackend):
 
     def register(self,request,**kwargs):
         username, email, password = kwargs['email'], kwargs['email'], kwargs['password']
         User.objects.create_user(username,email,password)
-
         new_user = authenticate(username=username, password=password)
         login(request, new_user)
         signals.user_registered.send(sender=self.__class__,
                                      user=new_user,
                                      request=request)
+        sendIntro(email)
         return new_user
 
     def get_form_class(self,request):

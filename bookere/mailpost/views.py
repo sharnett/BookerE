@@ -2,6 +2,8 @@
 
 from models import MailPost
 from django.core.mail import send_mail
+
+
 from books.models import Book
 from django.contrib.auth.models import User
 
@@ -19,9 +21,9 @@ def create_post(**message):
     MailPost(body=body,email=email).save()
 
     try:
+        user = getUser(email)
         if parseSubject(subject,'add'):
-            pairs = pairBody(body)
-            user = getUser(email)
+            pairs = pairBody(body)            
             title = parsePairForKey(pairs,'book')
             friend_loan = parsePairForKey(pairs,'friend')
             book = Book(user=user,title=title,friend_loan=friend_loan)
@@ -43,15 +45,17 @@ def sendError(email):
         fail_silently=False
         )
 
+def bookString(book):
+    return ','.join([str(book.date_loan),book.title,book.friend_loan])
+
+def booksString(book):
+    return '\n'.join([bookString(book) for book in books])
 
 def sendReport(user):
     books = user.book_set.all()
-    body = '\n'.join([
-            ','.join([str(book.date_loan), book.title,book.friend_loan]) for book in books
-            ])
     send_mail(
         subject='Loan Report From BookerE',
-        message=body,
+        message=booksString(books)
         from_email=reply_email,
         recipient_list=[user.email],
         fail_silently=False
@@ -61,7 +65,7 @@ def sendReport(user):
 def sendBook(book,user):
     send_mail(
         subject='Successfully Stored Book!',
-        message='Added the following book to your loanouts:\n%s' % ','.join([str(book.date_loan),book.title,book.friend_loan]),
+        message='Added the following book to your loanouts:\n%s' % bookString(book)
         from_email=reply_email,
         recipient_list=[user.email],
         fail_silently=False
