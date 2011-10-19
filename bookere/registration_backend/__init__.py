@@ -24,8 +24,6 @@ def sendIntro(email):
     email = EmailMessage(subject, message, from_email, recipient_list,headers = {'Reply-To': reply_email})
     email.send(fail_silently=fail_silently)
 
-
-
 class BookerEBackend(SimpleBackend):
 
     def register(self,request,**kwargs):
