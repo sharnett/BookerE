@@ -4,7 +4,7 @@ from django.contrib.auth import login
 from django.contrib.auth.models import User
 
 from registration import signals
-
+from django.core.mail import send_mail
 
 from django.contrib.auth.models import User
 from django import forms
