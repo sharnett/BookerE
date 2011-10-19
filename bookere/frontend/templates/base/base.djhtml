@@ -13,6 +13,7 @@
 		</div>
 		<div class="menu">
                     <a href="{% url frontend:help %}">Help</a>
+                    <a href="{% url books:home %}">Books</a>
                     <a href="{% url registration:auth_login %}">Login</a>
                     <a href="{% url auth_logout %}">Logout</a>
 		</div>

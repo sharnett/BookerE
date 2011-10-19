@@ -40,41 +40,37 @@ def create_post(**message):
                 sendError(email,e2)
     except Exception as e3:
         sendError(email,e3)
-        
+
+def send_message(email,subject,message):
+    from_email = reply_email
+    recipient_list = [email]
+    fail_silently = False
+    headers = {'Reply-To': from_email}
+    email = EmailMessage(subject, message, from_email, recipient_list,headers = headers)
+    email.send(fail_silently=fail_silently)
+
+
+
 def sendError(email,etype):
-    send_mail(
-        subject='Error processing request -- %s' % str(etype),
-        message='Could not do what you wanted me to do %s' % str(etype),
-        from_email=reply_email,
-        recipient_list=[email],
-        fail_silently=False
-        )
+    subject='Error processing request -- %s' % str(etype),
+    message='Could not do what you wanted me to do %s' % str(etype),
+    send_message(email,subject,message)
 
 def bookString(book):
     return ','.join([str(book.date_loan),book.title,book.friend_loan])
 
-def booksString(book):
+def booksString(books):
     return '\n'.join([bookString(book) for book in books])
 
 def sendReport(user):
-    books = user.book_set.all()
-    send_mail(
-        subject='Loan Report From BookerE',
-        message=booksString(books),
-        from_email=reply_email,
-        recipient_list=[user.email],
-        fail_silently=False
-        )
-
+    message = booksString(user.book_set.all())
+    subject='Loan Report From BookerE',
+    send_message(user.email,subject,message)
 
 def sendBook(book,user):
-    send_mail(
-        subject='Successfully Stored Book!',
-        message='Added the following book to your loanouts:\n%s' % bookString(book),
-        from_email=reply_email,
-        recipient_list=[user.email],
-        fail_silently=False
-        )
+    subject='Successfully Stored Book!',
+    message='Added the following book to your loanouts:\n%s' % bookString(book),
+    send_message(user.email,subject,message)
     
 
 def pairBody(body):
