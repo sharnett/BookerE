@@ -52,8 +52,8 @@ def send_message(email,subject,message):
 
 
 def sendError(email,etype):
-    subject='Error processing request -- %s' % str(etype),
-    message='Could not do what you wanted me to do %s' % str(etype),
+    subject='Error processing request -- %s' % str(etype)
+    message='Could not do what you wanted me to do %s' % str(etype)
     send_message(email,subject,message)
 
 def bookString(book):
@@ -64,12 +64,12 @@ def booksString(books):
 
 def sendReport(user):
     message = booksString(user.book_set.all())
-    subject='Loan Report From BookerE',
+    subject='Loan Report From BookerE'
     send_message(user.email,subject,message)
 
 def sendBook(book,user):
-    subject='Successfully Stored Book!',
-    message='Added the following book to your loanouts:\n%s' % bookString(book),
+    subject='Successfully Stored Book!'
+    message='Added the following book to your loanouts:\n%s' % bookString(book)
     send_message(user.email,subject,message)
     
 
