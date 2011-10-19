@@ -1,7 +1,7 @@
 # Create your views here.
 
 from models import MailPost
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMessage
 
 
 from books.models import Book
