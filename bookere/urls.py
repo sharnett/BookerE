@@ -22,8 +22,8 @@ urlpatterns += patterns('django.contrib.staticfiles.views',
 
 mail_handler = MailHandler()
 mail_handler.register_address(
-    address="39b5ef0e6660524333d3@cloudmailin.com",
-    secret= "9e6a1be956c7ef8aea57",
+    address="39b5ef0e6660524333d3@cloudmailin.net",
+    secret= "9e6a1be956c7ef8aea57",    
     callback=create_post,
     )
 
