@@ -18,7 +18,7 @@ def sendIntro(email):
     message = 'You have successfully set up your BookerE account! Make sure to go to <a href="http://BookerE.us/help">BookerE</a> to get the instructions of how to interact with the service!'
     send_mail(
         subject='Welcome to BookerE!',
-        message=message
+        message=message,
         from_email=reply_email,
         recipient_list=[email],
         fail_silently=False

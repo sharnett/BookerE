@@ -65,7 +65,7 @@ def sendReport(user):
 def sendBook(book,user):
     send_mail(
         subject='Successfully Stored Book!',
-        message='Added the following book to your loanouts:\n%s' % bookString(book)
+        message='Added the following book to your loanouts:\n%s' % bookString(book),
         from_email=reply_email,
         recipient_list=[user.email],
         fail_silently=False
