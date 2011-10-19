@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+{% include "base/head.djhtml" %}
+<body class="landing homee">
+	
+	<div class="header">
+		<div class="headerwrap">
+			<div class="logo">
+				<a href="https://ohlife.com/" ><img src="{% get_static_prefix %}/img/txt_logo.gif" alt="OhLife" /></a>			</div>
+							<div class="menu">
+					<form method="POST" action="https://ohlife.com/latest">
+						<input type="submit" value="" name="" />
+					</form>
+				</div>
+						<div class="spacer"></div>
+		</div>
+	</div>
+        {% block content %}
+        {% include "home.djhtml" %}
+        {% endblock content %}
+</body>
+
+</html>

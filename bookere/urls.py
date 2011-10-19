@@ -7,13 +7,14 @@ from mailpost.views import create_post
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^home/', include('bookere.frontend.urls')),
+    url(r'^', include('bookere.frontend.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    url(r'^admin/', include(admin.site.urls)),
+                           url(r'^admin/', include(admin.site.urls)),
+                       url(r'register/',include('register.urls',app_name='register',namespace='register'))
 )
 
 urlpatterns += patterns('django.contrib.staticfiles.views',

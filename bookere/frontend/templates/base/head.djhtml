@@ -1,0 +1,23 @@
+{% load static %}
+<head>
+	
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+			<link href="{% get_static_prefix %}/css/style.css" media="screen" rel="stylesheet" type="text/css" />		
+		
+		
+	<title>OhLife helps you remember what's happened in your life</title>
+
+	
+	<meta property="og:title" content="You're invited to join OhLife! It helps you remember what's happened in your life."/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content="http://ohlife.com/img/static/shared/ohlifelogo.gif"/>
+	<meta property="og:description"
+	          content="OhLife sends you emails asking &quot;How'd your day go?&quot; All you have to do is reply to them, and you end up with a pretty neat journal of your days."/>
+    <meta property="og:url" content="http://ohlife.com"/>
+	<meta property="fb:admins" content="1204544,1201836"/>
+	
+			<script type="text/javascript" src="{% get_static_prefix %}/js/jquery.min.js"></script>
+			<script type="text/javascript" src="{% get_static_prefix %}/js/app.js"></script>
+
+</head>

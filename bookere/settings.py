@@ -121,6 +121,8 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'frontend',
     'cloudmailin',
+    'register',
+    'registration',
     'mailpost',
 )
 
