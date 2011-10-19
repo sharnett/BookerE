@@ -30,21 +30,21 @@ def create_post(**message):
                 book = Book(user=user,title=title,friend_loan=friend_loan)
                 book.save()
                 sendBook(book,user)
-            except:
-                sendError(email,'a')
+            except Exception as e1:
+                sendError(email,e1)
         if parseSubject(subject,'report'):
             try:
                 user = getUser(email)
                 sendReport(user)
-            except:
-                sendError(email,'b')
-    except:
-        sendError(email,'c')
+            except Exception as e2:
+                sendError(email,e2)
+    except Exception as e3:
+        sendError(email,e3)
         
 def sendError(email,etype):
     send_mail(
-        subject='Error processing request -- %s' % etype,
-        message='Could not do what you wanted me to do',
+        subject='Error processing request -- %s' % str(etype),
+        message='Could not do what you wanted me to do %s' % str(etype),
         from_email=reply_email,
         recipient_list=[email],
         fail_silently=False
