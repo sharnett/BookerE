@@ -1,4 +1,4 @@
-quick start:
+Quick start:
 1) get django: https://www.djangoproject.com/download/
 2) get pip: http://www.pip-installer.org/en/latest/installing.html
 ("easy_install pip" worked for me)
