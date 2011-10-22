@@ -1,1 +1,9 @@
-bookstore
+quick start:
+1) get django: https://www.djangoproject.com/download/
+2) get pip: http://www.pip-installer.org/en/latest/installing.html
+("easy_install pip" worked for me)
+3) get cloudmailin: pip install django-cloudmailin
+4) get BookerE: git clone git://github.com/jackdreilly/BookerE.git
+5) go to main directory: cd BookerE/bookere/
+6) set up database: python manage.py syncdb
+7) run it: python manage.py runserver
