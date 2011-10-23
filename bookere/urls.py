@@ -4,6 +4,9 @@ from cloudmailin.views import MailHandler
 from django.contrib import admin
 admin.autodiscover()
 from mailpost.views import create_post
+from mailpost.forms import FakeEmailForm
+from django.views.generic import FormView
+from django.contrib.auth.decorators import login_required
 
 urlpatterns = patterns('',
                        url(r'^books/', include('books.urls',namespace='books',app_name='books')),                       
@@ -27,4 +30,8 @@ mail_handler.register_address(
 
 urlpatterns += patterns('',
                        url(r'^cloudmailin/$', mail_handler),
+                       )
+
+urlpatterns += patterns('',
+                       url(r'^fake_email_client/$', login_required(FormView.as_view(form_class=FakeEmailForm, template_name='gmail.html')), name='fake_email_client'),
                        )
