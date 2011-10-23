@@ -4,6 +4,7 @@ from cloudmailin.views import MailHandler
 from django.contrib import admin
 admin.autodiscover()
 from mailpost.views import create_post, fake_email_view, sent_email_view
+from django.contrib.auth.decorators import login_required
 
 urlpatterns = patterns('',
                        url(r'^books/', include('books.urls',namespace='books',app_name='books')),                       
@@ -30,6 +31,6 @@ urlpatterns += patterns('',
                        )
 
 urlpatterns += patterns('', 
-        url(r'^fake_email_client/$', fake_email_view),
+        url(r'^fake_email_client/$', login_required(fake_email_view)),
         url(r'^email_sent/$', sent_email_view, name='send_email'),
         )
