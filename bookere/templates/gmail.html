@@ -4,10 +4,9 @@
     </head>
     <h1> Welcome to gmail </h1>
     <hr/>
-    <p>
-    From: {{ user.email }}
-    <form action="???????" method="post">{% csrf_token %}
+    <form action="{% url cloudmailin %}" method="post">
+        {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Send" />
     </form>
 </html>

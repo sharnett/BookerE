@@ -3,6 +3,9 @@
 from models import MailPost
 from django.core.mail import send_mail, EmailMessage
 
+from mailpost.forms import FakeEmailForm
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 
 from books.models import Book
 from django.contrib.auth.models import User
@@ -102,3 +105,7 @@ def parseSubject(subject,key):
     """
     """
     return key.lower() in subject.lower()
+
+def fake_email_view(request):
+    form = FakeEmailForm(request.user) 
+    return render_to_response('gmail.html', { 'form': form }, context_instance=RequestContext(request) )
