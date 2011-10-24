@@ -1,0 +1,12 @@
+<html>
+    <head>
+        <title> Gmail - Inbox - {{ user.email }} </title>
+    </head>
+    <h1> Welcome to gmail </h1>
+    <hr/>
+    <form action="{% url send_email %}" method="post"> 
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Send" />
+    </form>
+</html>
