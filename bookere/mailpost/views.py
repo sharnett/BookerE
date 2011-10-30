@@ -9,6 +9,7 @@ from django.template import RequestContext
 from django.test.client import Client
 from django.http import HttpResponseRedirect
 from cloudmailin.views import generate_signature
+from string import strip
 
 from books.models import Book
 from django.contrib.auth.models import User
@@ -38,6 +39,14 @@ def create_post(**message):
                 sendBook(book,user)
             except Exception as e1:
                 sendError(email,e1)
+        if parseSubject(subject,'remove'):
+            try:
+                pairs = pairBody(body)            
+                title = parsePairForKey(pairs,'book')
+                friend = parsePairForKey(pairs,'friend')
+                deleteBook(title, friend, user)
+            except Exception as e1:
+                sendError(email,e1)
         if parseSubject(subject,'report'):
             try:
                 user = getUser(email)
@@ -54,8 +63,6 @@ def send_message(email,subject,message):
     headers = {'Reply-To': from_email}
     email = EmailMessage(subject, message, from_email, recipient_list,headers = headers)
     email.send(fail_silently=fail_silently)
-
-
 
 def sendError(email,etype):
     subject='Error processing request -- %s' % str(etype)
@@ -78,6 +85,17 @@ def sendBook(book,user):
     message='Added the following book to your loanouts:\n%s' % bookString(book)
     send_message(user.email,subject,message)
     
+def deleteBook(title, friend, user):
+    books = Book.objects.filter(title=title, friend_loan=friend, user=user)
+    if books:
+        for book in books:
+            subject='Successfully Removed Book!'
+            message='Removed the following book from your loanouts:\n%s' % bookString(book)
+            book.delete()
+    else:
+        subject='Failed to removed book'
+        message='Couldn\' find the following book to remove:\n%s: %s' % (title, friend)
+    send_message(user.email,subject,message)
 
 def pairBody(body):
     """
@@ -89,7 +107,7 @@ def pairBody(body):
     pairs = dict()
     for line in lines:
         try:
-            splits = line.split(':')
+            splits = map(strip, line.split(':'))
             pairs[splits[0]] = splits[1]
         except:
             continue
