@@ -44,7 +44,7 @@ def create_post(**message):
                 pairs = pairBody(body)            
                 title = parsePairForKey(pairs,'book')
                 friend = parsePairForKey(pairs,'friend')
-                deleteBook(title, friend, user)
+                returnBook(title, friend, user)
             except Exception as e1:
                 sendError(email,e1)
         if parseSubject(subject,'report'):
