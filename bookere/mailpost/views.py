@@ -70,13 +70,13 @@ def sendError(email,etype):
     send_message(email,subject,message)
 
 def bookString(book):
-    return ','.join([str(book.date_loan),book.title,book.friend_loan])
+    return ', '.join([book.title,book.friend_loan,book.date_loan.strftime("%b %d")])
 
 def booksString(books):
     return '\n'.join([bookString(book) for book in books])
 
 def sendReport(user):
-    message = booksString(user.book_set.all())
+    message = booksString(user.book_set.filter(active=True))
     subject='Loan Report From BookerE'
     send_message(user.email,subject,message)
 
