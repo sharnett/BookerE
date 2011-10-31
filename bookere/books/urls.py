@@ -1,7 +1,6 @@
 from django.conf.urls.defaults import patterns, include, url
-from django.views.generic import TemplateView
+from books.views import bookView
 
 urlpatterns = patterns('',
-    # Examples:
-    url(r'^home', TemplateView.as_view(template_name='bookhome.djhtml'), name='home'),
+    url(r'^home', bookView.as_view(), name='home'),
 )

@@ -85,13 +85,14 @@ def sendBook(book,user):
     message='Added the following book to your loanouts:\n%s' % bookString(book)
     send_message(user.email,subject,message)
     
-def deleteBook(title, friend, user):
+def returnBook(title, friend, user):
     books = Book.objects.filter(title=title, friend_loan=friend, user=user)
     if books:
         for book in books:
             subject='Successfully Removed Book!'
             message='Removed the following book from your loanouts:\n%s' % bookString(book)
-            book.delete()
+            book.active = False
+            book.save()
     else:
         subject='Failed to removed book'
         message='Couldn\' find the following book to remove:\n%s: %s' % (title, friend)
