@@ -5,6 +5,8 @@ from django.contrib import admin
 admin.autodiscover()
 from mailpost.views import create_post, fake_email_view
 from django.contrib.auth.decorators import login_required
+import django_cron
+django_cron.autodiscover()
 
 urlpatterns = patterns('',
                        url(r'^books/', include('books.urls',namespace='books',app_name='books')),                       
