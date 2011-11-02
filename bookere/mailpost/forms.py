@@ -1,11 +1,31 @@
 from django import forms
+from django.http import HttpResponseServerError
 
-class FakeEmailForm(forms.Form):
+
+def hideify(field,value):
+    field.initial = value
+    field.widget = forms.HiddenInput()
+
+class CloudMailinForm(forms.Form):
     subject = forms.CharField(max_length=100, required=False)
     plain = forms.CharField(label="Message", widget=forms.Textarea, required=False)
-    to = forms.CharField(initial="<39b5ef0e6660524333d3@cloudmailin.net>",widget=forms.HiddenInput())
-    secret = forms.CharField(initial="9e6a1be956c7ef8aea57",widget=forms.HiddenInput())   
-    signature = forms.CharField(widget=forms.HiddenInput(), required=False)
-    def __init__(self, user, *args, **kwargs):
-        super(FakeEmailForm, self).__init__(*args, **kwargs)
-        self.fields['from'] = forms.EmailField(initial=user.email)
+    to = forms.CharField(max_length=100,required=True, widget=forms.HiddenInput())
+    def __init__(self, *args, **kwargs):
+        super(CloudMailinForm, self).__init__(*args, **kwargs)
+        init_data = kwargs['initial']
+        from_field = forms.EmailField()
+        secret_field = forms.CharField()
+
+        user = init_data.get('user',None)
+        secret = init_data.get('secret',None)
+
+        if user:
+            hideify(from_field,user.email)
+
+        if not secret:
+            return HttpResponseServerError('need secret for local client', mimetype="text/plain")
+        else:
+            hideify(secret_field,secret)
+
+        self.fields['from'] = from_field
+        self.fields['secret'] = secret_field
