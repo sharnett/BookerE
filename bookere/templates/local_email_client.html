@@ -1,0 +1,12 @@
+{% extends "base/base.djhtml" %}
+
+{% block content %}
+<h1> Local Email Client </h1>
+
+<form action="" method="POST">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" />
+</form>
+
+{% endblock content %}
