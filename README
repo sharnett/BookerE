@@ -1,4 +1,4 @@
-quick start:
+Quick start:
 1) get django: https://www.djangoproject.com/download/
 2) get pip: http://www.pip-installer.org/en/latest/installing.html
 ("easy_install pip" worked for me)
@@ -7,3 +7,13 @@ quick start:
 5) go to main directory: cd BookerE/bookere/
 6) set up database: python manage.py syncdb
 7) run it: python manage.py runserver
+
+
+WHAT THE FINISHED PROJECT WILL DO
+
+1) Users sign up with an email and password.
+2) Can add/remove a borrow/loan record via email or a web form.
+3) Receive a regular report (say, every two weeks) of which books you are borrowing/loaning.
+Can also see this report at any time with a special email, or on the website.
+Can adjust the frequency of the report somehow.
+4) Can see a history of books that have been returned already, again via email or web.
