@@ -29,3 +29,5 @@
         {% endfor %}
     </tbody>
 </table>
+<br />
+<p> <a href="add"> Add a book </a> </p>
