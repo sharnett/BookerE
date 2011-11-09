@@ -12,8 +12,11 @@ class MailPost(models.Model):
     email = models.EmailField(null=True,blank=True)
         
 class MailProfile(models.Model):
-    next_reminder = models.DateTimeField(auto_now_add=True)
+    next_reminder = models.DateTimeField()
     reminder_frequency = models.PositiveIntegerField(default=14, validators=[MinValueValidator(1)]) # days
     user = models.OneToOneField(User,blank=False,null=False)
     def refresh_next_reminder(self):
         self.next_reminder += timedelta(self.reminder_frequency)
+        self.save()
+    def __unicode__(self):
+        return str(self.user)

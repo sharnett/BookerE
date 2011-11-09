@@ -1,23 +1,16 @@
 from django_cron import cronScheduler, Job
-from models import MailPost
+from models import MailPost, MailProfile
 from datetime import datetime
-# This is a function I wrote to check a feedback email address and add it to our database. Replace with your own imports
+from django.contrib.auth.models import User
+from views import sendReport
 
+class SendReminders(Job):
+    run_every = 600
 
-class StoreBullshitPost(Job):
-  """
-  test class to store bull shit
-  """
-  run_every = 20
+    def job(self):
+        need_updates = MailProfile.objects.filter(next_reminder__lt=datetime.now())
+        for mailprofile in need_updates:
+            sendReport(mailprofile.user)
+            mailprofile.refresh_next_reminder()
 
-  def job(self):
-    """
-    store a bull shit record
-    """
-    email = 'bull@shit.com'
-    body = 'I am storing bull shit'
-    now = str(datetime.now())
-    body+=now
-    MailPost(body=body,email=email).save()
-
-cronScheduler.register(StoreBullshitPost)
+cronScheduler.register(SendReminders)
