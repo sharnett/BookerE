@@ -1,31 +1,21 @@
 <h1>Loans for {{ user.username }}</h1>
-<table>
+<table style="text-align: left;">
     <thead>
         <tr>
-            <th>
-                Friend
-            </th>
-            <th>
-                Book
-            </th>
-            <th>
-                Loan Date
-            </th>
+            <th> Friend </th>
+            <th> Book </th>
+            <th> Loan Date </th>
         </tr>
     </thead>
     <tbody>
-        {% for book in user.book_set.all %}
+        {% for book in book_list %}
         <tr>
-            <td>
-                {{book.friend_loan }}
-            </td>
-            <td>
-                {{book.date_loan }}
-            </td>
-            <td>
-                {{book.title }}
-            </td>
+            <td> {{ book.friend_loan }} </td>
+            <td> {{ book.title }} </td>
+            <td> {{ book.date_loan|date:"M j" }} </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
+<br />
+<p> <a href="add"> Add a book </a> </p>
