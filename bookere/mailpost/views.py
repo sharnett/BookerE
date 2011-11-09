@@ -53,6 +53,8 @@ def create_post(**message):
                 sendReport(user)
             except Exception as e2:
                 sendError(email,e2)
+    except User.DoesNotExist:
+        sendError(email, "Please sign up for BookerE!!!!")
     except Exception as e3:
         sendError(email,e3)
 
@@ -115,7 +117,7 @@ def pairBody(body):
     return pairs
 
 def getUser(email):
-    return User.objects.filter(email=email)[0]
+    return User.objects.get(email=email)
 
 def parsePairForKey(pairs,key):
     for k in pairs.iterkeys():
