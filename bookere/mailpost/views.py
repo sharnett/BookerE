@@ -3,12 +3,10 @@
 from models import MailPost
 from django.core.mail import send_mail, EmailMessage
 
-from mailpost.forms import FakeEmailForm
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from mailpost.forms import CloudMailinForm
 from django.test.client import Client
-from django.http import HttpResponseRedirect
 from cloudmailin.views import generate_signature
+from django.views.generic import FormView
 from string import strip
 
 from books.models import Book
@@ -130,15 +128,22 @@ def parseSubject(subject,key):
     """
     return key.lower() in subject.lower()
 
-def fake_email_view(request):
-    form = FakeEmailForm(request.user) 
-    return render_to_response('gmail.html', { 'form': form }, context_instance=RequestContext(request) )
-
-def sent_email_view(request):
-    form = FakeEmailForm(request.user, request.POST)
-    data = request.POST.copy()
-    params = dict((k, v) for k, v in request.POST.iteritems())
-    data['signature'] = generate_signature(params, request.POST['secret'])
-    c = Client()
-    c.post('/cloudmailin/', data)
-    return HttpResponseRedirect('/books/home')
+class fake_email_view(FormView):
+    form_class = CloudMailinForm
+    template_name = 'local_email_client.html'
+    success_url = '/books/home'
+    secret = ''
+    address = ''
+    def get_initial(self):
+        initial = super(fake_email_view, self).get_initial()
+        initial['user'] = self.request.user
+        initial['to'] = '<' + self.address + '>'
+        initial['secret'] = self.secret
+        return initial
+    def post(self,request,*args,**kwargs):
+        response = super(fake_email_view, self).post(request,*args,**kwargs)
+        data = request.POST.copy()
+        params = dict((k, v) for k, v in request.POST.iteritems())
+        data['signature'] = generate_signature(params, request.POST['secret'])
+        Client().post('/cloudmailin/', data)
+        return response
