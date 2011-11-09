@@ -3,7 +3,7 @@ from cloudmailin.views import MailHandler
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
-from mailpost.views import create_post, fake_email_view
+from mailpost.views import create_post, FakeEmailView
 from django.contrib.auth.decorators import login_required
 
 urlpatterns = patterns('',
@@ -33,5 +33,5 @@ urlpatterns += patterns('',
                        )
 
 urlpatterns += patterns('', 
-        url(r'^fake_email_client/$', login_required(fake_email_view.as_view(address=my_address, secret=my_secret))),
+        url(r'^fake_email_client/$', login_required(FakeEmailView.as_view(address=my_address, secret=my_secret))),
         )

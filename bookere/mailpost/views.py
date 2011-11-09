@@ -128,20 +128,20 @@ def parseSubject(subject,key):
     """
     return key.lower() in subject.lower()
 
-class fake_email_view(FormView):
+class FakeEmailView(FormView):
     form_class = CloudMailinForm
     template_name = 'local_email_client.html'
     success_url = '/books/home'
     secret = ''
     address = ''
     def get_initial(self):
-        initial = super(fake_email_view, self).get_initial()
+        initial = super(FakeEmailView, self).get_initial()
         initial['user'] = self.request.user
         initial['to'] = '<' + self.address + '>'
         initial['secret'] = self.secret
         return initial
     def post(self,request,*args,**kwargs):
-        response = super(fake_email_view, self).post(request,*args,**kwargs)
+        response = super(FakeEmailView, self).post(request,*args,**kwargs)
         data = request.POST.copy()
         params = dict((k, v) for k, v in request.POST.iteritems())
         data['signature'] = generate_signature(params, request.POST['secret'])
