@@ -4,8 +4,7 @@
     <hr/>
     <form action="" method="post"> 
         {% csrf_token %}
-        <p> Book: {{ form.title }}
-        <p> Friend: {{ form.friend_loan }}
-        <p> <input type="submit" value="Add book" />
+        {{ form.as_p }}
+        <input type="submit" value="Add book" />
     </form>
 {% endblock content %}
