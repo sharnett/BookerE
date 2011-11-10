@@ -127,6 +127,7 @@ INSTALLED_APPS = (
     'cloudmailin',
     'registration',
     'mailpost',
+    'django_cron',
     'books',
 )
 
@@ -160,3 +161,4 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'bookerewashington@gmail.com'
 EMAIL_HOST_PASSWORD = 'paulgraham'
 EMAIL_PORT = 587
+CRON_POLLING_FREQUENCY = 20
