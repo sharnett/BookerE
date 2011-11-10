@@ -94,7 +94,7 @@ SECRET_KEY = '(t(z)-m_6h*6)u#4*4^fn)%zp@7y$9_tcuo*3rz!%$ap$ixpqu'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+     'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -104,6 +104,15 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
 )
+
+
+TEMPLATE_CONTEXT_PROCESSORS = ("django.contrib.auth.context_processors.auth",
+                               "django.core.context_processors.debug",
+                               "django.core.context_processors.i18n",
+                               "django.core.context_processors.media",
+                               "django.core.context_processors.static",
+                               "django.core.context_processors.request",
+                               "django.contrib.messages.context_processors.messages")
 
 ROOT_URLCONF = 'bookere.urls'
 
@@ -123,12 +132,17 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.admindocs',
+    'django.contrib.markup',
     'frontend',
     'cloudmailin',
     'registration',
     'mailpost',
     'django_cron',
+    'dajaxice',
+    'dajax',
     'books',
+    'api',
+    'piston',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -162,3 +176,6 @@ EMAIL_HOST_USER = 'bookerewashington@gmail.com'
 EMAIL_HOST_PASSWORD = 'paulgraham'
 EMAIL_PORT = 587
 CRON_POLLING_FREQUENCY = 20
+
+
+DAJAXICE_MEDIA_PREFIX="dajaxice"

@@ -8,6 +8,7 @@
 	<div class="header">
 	    <div class="headerwrap">
 		<div class="logo">
+                  <button id="ajaxtest">Test out Ajax!</button>
 		    <a href="/" ><img src="{% get_static_prefix %}/img/txt_logo.gif" alt="OhLife" />
                     </a>
 		</div>
@@ -31,5 +32,4 @@
         {% block bottom %}
         {% endblock bottom %}
 </body>
-
 </html>
