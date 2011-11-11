@@ -3,7 +3,8 @@ django-cloudmailin==0.1.1
 -e git+https://github.com/reavis/django-cron.git@a9f7ec464a9a45f702e15cf949b6ef061e8a8bcd#egg=django_cron-dev
 -e git+https://github.com/jorgebastida/django-dajax.git@510a6c3e267ce7b2a5423a7e8bcca191956247ed#egg=django_dajax-dev
 -e git+https://github.com/jorgebastida/django-dajaxice.git@d5a70654fbcd7241fbdfaf5a89fea2746cd25369#egg=django_dajaxice-dev
-django-piston==0.2.3rc1
+### django-piston==0.2.3rc1
+-e git+https://github.com/mozilla/django-piston.git#egg=django_piston
 docutils==0.8.1
 gunicorn==0.13.4
 psycopg2==2.4.2
