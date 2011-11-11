@@ -2,13 +2,13 @@
 
 {% block bottom %}
 <h1>Help On Using BookerE</h1>
-<h2>How To Add Book to Loan Repo</h2>
+<h2>How To Add (or Remove) Book to Loan Repo</h2>
 <ol>
     <li>Send an email to <a
     href="mailto:39b5ef0e6660524333d3@cloudmailin.net">39b5ef0e6660524333d3@cloudmailin.net</a> from your registered email.
     </li>
     <li>
-        Put the word "add" somewhere in the title
+        Put the word "add" (or "remove") somewhere in the title
     </li>
     <li>
         In the body, format the info as pairs

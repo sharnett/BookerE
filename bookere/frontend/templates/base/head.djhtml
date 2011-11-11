@@ -1,4 +1,5 @@
 {% load static %}
+{% load dajaxice_templatetags %}
 <head>
 	
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
@@ -16,8 +17,8 @@
 	          content="OhLife sends you emails asking &quot;How'd your day go?&quot; All you have to do is reply to them, and you end up with a pretty neat journal of your days."/>
     <meta property="og:url" content="http://ohlife.com"/>
 	<meta property="fb:admins" content="1204544,1201836"/>
-	
-			<script type="text/javascript" src="{% get_static_prefix %}/js/jquery.min.js"></script>
-			<script type="text/javascript" src="{% get_static_prefix %}/js/app.js"></script>
-
+			<script type="text/javascript" src="{% get_static_prefix %}js/jquery.min.js"></script>
+                        <script src="{% get_static_prefix %}js/jquery.dajax.core.js" type="text/javascript" charset="utf-8"></script>
+			<script type="text/javascript" src="{% get_static_prefix %}js/all.js"></script>                        
+                        {% dajaxice_js_import %}
 </head>

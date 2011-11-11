@@ -4,7 +4,7 @@ from django.contrib.auth import login
 from django.contrib.auth.models import User
 
 from registration import signals
-from django.core.mail import send_mail,EmailMessage
+from django.core.mail import send_mail,EmailMessage, EmailMultiAlternatives
 
 from django.contrib.auth.models import User
 from django import forms
@@ -15,13 +15,15 @@ attrs_dict = {'class': 'required'}
 reply_email = "39b5ef0e6660524333d3@cloudmailin.net"
 
 def sendIntro(email):
-    message = 'You have successfully set up your BookerE account! Make sure to go to <a href="http://BookerE.us/help">BookerE</a> to get the instructions of how to interact with the service!'
+    message = 'You have successfully set up your BookerE account! Make sure to go to http://BookerE.us/help to get the instructions of how to interact with the service!'
+    html_message = 'You have successfully set up your BookerE account! Make sure to go to <a href="http://BookerE.us/help">BookerE</a> to get the instructions of how to interact with the service!'
     subject='Welcome to BookerE!'
     from_email = reply_email
     recipient_list = [email]
     fail_silently = False
     headers = {'Reply-To': from_email}
-    email = EmailMessage(subject, message, from_email, recipient_list,headers = {'Reply-To': reply_email})
+    email = EmailMultiAlternatives(subject, message, from_email, recipient_list,headers = {'Reply-To': reply_email})
+    email.attach_alternative(html_message, "text/html")
     email.send(fail_silently=fail_silently)
 
 class BookerEBackend(SimpleBackend):
